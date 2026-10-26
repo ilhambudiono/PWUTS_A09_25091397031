@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOLA Laundry - Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Hero Header Banner -->
+    <header class="hero-header">
+        <div class="hero-container">
+            
+            <!-- Top Row: Brand & Profile -->
+            <div class="hero-top">
+                <div class="brand">
+                    <div class="brand-icon">
+                        <i class="fa-solid fa-washing-machine"></i>
+                    </div>
+                    <div class="brand-text">
+                        <h1>HOLA LAUNDRY</h1>
+                        <p>Sistem Informasi Manajemen Laundry</p>
+                    </div>
+                </div>
+
+                <div class="user-profile">
+                    <div class="user-avatar">IB</div>
+                    <div class="user-details">
+                        <span class="user-name">Ilham Budiono</span>
+                        <span class="user-role">Administrator</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Row: Navigation Tabs -->
+            <nav class="nav-tabs">
+                <a href="#" class="tab-item active nav-ajax" data-page="home">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Dashboard Home</span>
+                </a>
+                <a href="#" class="tab-item nav-ajax" data-page="pages/interaktif.html">
+                    <i class="fa-solid fa-wallet"></i>
+                    <span>Laporan Omset</span>
+                </a>
+                <a href="#" class="tab-item nav-ajax" data-page="pages/transaksi.html">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Data Pelanggan</span>
+                </a>
+            </nav>
+
+        </div>
+    </header>
+
+    <!-- Main Workspace Container -->
+    <main class="main-wrapper">
+        <div id="main-content" class="content-container">
+            
+            <!-- Default Home Content -->
+            <div id="default-dashboard">
+                
+                <!-- Stat Cards Grid -->
+                <div class="metrics-grid">
+                    <div class="metric-card border-blue">
+                        <div class="metric-body">
+                            <span class="metric-title">Total Transaksi</span>
+                            <h2 class="metric-number">128</h2>
+                            <span class="metric-note text-blue"><i class="fa-solid fa-receipt"></i> +12% minggu ini</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card border-green">
+                        <div class="metric-body">
+                            <span class="metric-title">Pelanggan Terdaftar</span>
+                            <h2 class="metric-number">45 Member</h2>
+                            <span class="metric-note text-green"><i class="fa-solid fa-user-check"></i> Terverifikasi</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card border-orange">
+                        <div class="metric-body">
+                            <span class="metric-title">Omset Bulan Ini</span>
+                            <h2 class="metric-number">Rp 3.450.000</h2>
+                            <span class="metric-note text-orange"><i class="fa-solid fa-arrow-trend-up"></i> Target 85%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Table Section -->
+                <div class="card-panel">
+                    <div class="panel-header">
+                        <h3><i class="fa-solid fa-clock-rotate-left"></i> Transaksi Terakhir</h3>
+                        <a href="#" class="btn-link nav-ajax" data-page="pages/interaktif.html">Lihat Semua</a>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>No. Resi</th>
+                                    <th>Pelanggan</th>
+                                    <th>Jenis Layanan</th>
+                                    <th>Status Pembayaran</th>
+                                    <th>Status Pengerjaan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>RES-1001</strong></td>
+                                    <td>Budi Santoso</td>
+                                    <td>Cuci Komplit (3.5 kg)</td>
+                                    <td><span class="badge badge-paid">Lunas</span></td>
+                                    <td><span class="badge badge-process">Sedang Diproses</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>RES-1002</strong></td>
+                                    <td>Siti Aminah</td>
+                                    <td>Cuci Kering (2.0 kg)</td>
+                                    <td><span class="badge badge-unpaid">Belum Lunas</span></td>
+                                    <td><span class="badge badge-process">Sedang Diproses</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
