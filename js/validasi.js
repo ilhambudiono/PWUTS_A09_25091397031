@@ -1,82 +1,78 @@
-$(document).ready(function () {
+$(document).ready(function() {
+    let countPelanggan = 2; // Menyesuaikan data dummy awal (Budi & Siti)
 
-    // Regex Validasi Nomor HP Indonesia (Hanya angka, diawali 08, panjang 10-14 digit)
-    const phoneRegex = /^08[0-9]{8,12}$/;
-
-    // Event Submit Form Pelanggan
-    $("#form-pelanggan").on("submit", function (e) {
+    // Gunakan event delegation agar tombol di halaman Ajax tetap terbaca
+    $(document).off('submit', '#form-pelanggan').on('submit', '#form-pelanggan', function(e) {
         e.preventDefault();
-
-        // Reset status error sebelumnya
-        $(".form-control").removeClass("is-invalid is-valid");
-        $(".error-msg").text("");
-        $("#form-alert").hide();
-
+        
         let isValid = true;
+        let nama = $('#nama_pelanggan').val().trim();
+        let hp = $('#no_hp').val().trim();
+        let alamat = $('#alamat').val().trim();
 
-        // 1. Validasi Nama Pelanggan
-        let nama = $("#nama_pelanggan").val().trim();
-        if (nama === "") {
-            $("#nama_pelanggan").addClass("is-invalid");
-            $("#err-nama").text("Nama pelanggan wajib diisi!");
+        // Reset pesan error
+        $('#err-nama, #err-hp, #err-alamat').hide();
+        $('#form-alert').hide();
+
+        // 1. Validasi Nama
+        if (nama === '') {
+            $('#err-nama').text('Nama pelanggan tidak boleh kosong!').show();
             isValid = false;
         } else if (nama.length < 3) {
-            $("#nama_pelanggan").addClass("is-invalid");
-            $("#err-nama").text("Nama minimal terdiri dari 3 karakter.");
+            $('#err-nama').text('Nama minimal 3 karakter!').show();
             isValid = false;
-        } else {
-            $("#nama_pelanggan").addClass("is-valid");
         }
 
-        // 2. Validasi Nomor HP
-        let hp = $("#no_hp").val().trim();
-        if (hp === "") {
-            $("#no_hp").addClass("is-invalid");
-            $("#err-hp").text("Nomor HP/WhatsApp wajib diisi!");
+        // 2. Validasi No HP (08 / 628)
+        let regexHp = /^(08|628)[0-9]{8,11}$/;
+        if (hp === '') {
+            $('#err-hp').text('Nomor HP tidak boleh kosong!').show();
             isValid = false;
-        } else if (!phoneRegex.test(hp)) {
-            $("#no_hp").addClass("is-invalid");
-            $("#err-hp").text("Format nomor HP tidak valid (contoh: 081234567890).");
+        } else if (!regexHp.test(hp)) {
+            $('#err-hp').text('Harus diawali 08/628 (10-13 digit)').show();
             isValid = false;
-        } else {
-            $("#no_hp").addClass("is-valid");
         }
 
-        // 3. Validasi Kategori Member
-        let kategori = $("#kategori_member").val();
-        if (kategori === "") {
-            $("#kategori_member").addClass("is-invalid");
-            $("#err-kategori").text("Silakan pilih kategori member.");
+        // 3. Validasi Alamat
+        if (alamat === '') {
+            $('#err-alamat').text('Alamat tidak boleh kosong!').show();
             isValid = false;
-        } else {
-            $("#kategori_member").addClass("is-valid");
         }
 
-        // Jika semua input valid
+        // Jika Semua Validasi Lolos
         if (isValid) {
-            $("#form-alert")
-                .removeClass("alert-error")
-                .addClass("alert-success")
-                .html(`<i class="fa-solid fa-circle-check me-2"></i> <strong>Berhasil!</strong> Data pelanggan <strong>${nama}</strong> telah disimpan ke database master.`)
-                .slideDown();
+            countPelanggan++;
+            let idPlg = 'PLG-' + String(countPelanggan).padStart(3, '0');
 
-            // Reset field form
-            $("#form-pelanggan")[0].reset();
-            $(".form-control").removeClass("is-valid");
+            // Baris HTML baru yang akan disisipkan ke tabel
+            let newRow = `
+                <tr style="background-color: #f0fdf4; transition: background-color 1s;">
+                    <td>
+                        <strong style="color: #2c3e50;">${nama}</strong><br>
+                        <small class="text-muted">ID: ${idPlg}</small>
+                    </td>
+                    <td>${hp}</td>
+                    <td>${alamat}</td>
+                </tr>
+            `;
+
+            // Tambahkan data baru ke paling atas tabel
+            $('.custom-table tbody').prepend(newRow);
+
+            // Tampilkan pesan sukses
+            $('#form-alert')
+                .css({'background-color': '#dcfce7', 'color': '#15803d', 'border': '1px solid #bbf7d0'})
+                .html('<i class="fa-solid fa-circle-check"></i> Data pelanggan berhasil disimpan!')
+                .fadeIn();
+            
+            // Reset isi form
+            $('#form-pelanggan')[0].reset();
         } else {
-            $("#form-alert")
-                .removeClass("alert-success")
-                .addClass("alert-error")
-                .html(`<i class="fa-solid fa-triangle-exclamation me-2"></i> <strong>Gagal menyimpan:</strong> Mohon periksa kembali field bergaris merah.`)
-                .slideDown();
+            // Tampilkan pesan gagal jika ada field yang salah
+            $('#form-alert')
+                .css({'background-color': '#fee2e2', 'color': '#b91c1c', 'border': '1px solid #fecaca'})
+                .html('<i class="fa-solid fa-triangle-exclamation"></i> Gagal menyimpan: Silakan periksa kembali field inputan.')
+                .fadeIn();
         }
     });
-
-    // Reset error saat tombol reset diklik
-    $("#btn-reset-form").on("click", function () {
-        $(".form-control").removeClass("is-invalid is-valid");
-        $(".error-msg").text("");
-        $("#form-alert").slideUp();
-    });
-
 });

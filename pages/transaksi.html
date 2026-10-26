@@ -1,50 +1,122 @@
-<div class="page-title-box">
-    <h2>Data Master Pelanggan</h2>
-    <p>Kelola dan daftarkan pelanggan baru ke dalam sistem.</p>
+<!-- Judul Halaman -->
+<div class="section-title margin-0" style="margin-bottom: 20px;">
+    <h3><i class="fa-solid fa-users"></i> Data Master Pelanggan</h3>
+    <p>Kelola pendaftaran pelanggan baru dan lihat daftar pelanggan terdaftar.</p>
 </div>
 
-<div class="table-card">
-    <div class="table-card-header">
-        <h3>Tambah Pelanggan Baru</h3>
-    </div>
+<!-- Layout Grid 2 Kolom -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; align-items: start;">
+    
+    <!-- KOLOM KIRI: Form Input Pelanggan -->
+    <div class="section-panel" style="margin-bottom: 0;">
+        <div style="display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; margin-bottom: 18px;">
+            <div style="width: 32px; height: 32px; background: #e8f4fc; color: #2980b9; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px;">
+                <i class="fa-solid fa-user-plus"></i>
+            </div>
+            <div>
+                <h4 style="font-size: 13.5px; color: #2c3e50; font-weight: 700;">Tambah Pelanggan Baru</h4>
+                <span style="font-size: 11px; color: #95a5a6;">Input data pelanggan laundry</span>
+            </div>
+        </div>
 
-    <!-- Alert Notifikasi -->
-    <div id="form-alert" style="display: none; margin-bottom: 20px; padding: 12px 16px; border-radius: 6px; font-size: 13px;"></div>
+        <!-- Alert Notifikasi Validasi -->
+        <div id="form-alert" style="display: none; padding: 10px 12px; border-radius: 6px; font-size: 11.5px; font-weight: 600; margin-bottom: 16px;"></div>
 
-    <form id="form-pelanggan" novalidate>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-bottom: 20px;">
-            
-            <!-- Input Nama -->
-            <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13px; font-weight: 600; color: #475569;">Nama Lengkap <span style="color: #ef4444;">*</span></label>
-                <input type="text" id="nama_pelanggan" name="nama_pelanggan" class="form-control" placeholder="Masukkan nama pelanggan" style="padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; outline: none;">
-                <small class="error-msg" id="err-nama" style="color: #ef4444; font-size: 12px; margin-top: 2px;"></small>
+        <form id="form-pelanggan" autocomplete="off">
+            <!-- Input Nama Lengkap -->
+            <div style="display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px;">
+                <label for="nama_pelanggan" style="font-size: 11.5px; font-weight: 700; color: #34495e;">
+                    Nama Lengkap <span style="color: #e74c3c;">*</span>
+                </label>
+                <div style="position: relative;">
+                    <i class="fa-solid fa-user" style="position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: #bdc3c7; font-size: 11px;"></i>
+                    <input type="text" id="nama_pelanggan" name="nama_pelanggan" placeholder="Masukkan nama pelanggan" style="width: 100%; padding: 8px 12px 8px 32px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px; outline: none; background: #ffffff; transition: border-color 0.2s;" onfocus="this.style.borderColor='#2980b9'" onblur="this.style.borderColor='#cbd5e1'">
+                </div>
+                <small id="err-nama" style="color: #e74c3c; font-size: 10.5px; display: none; font-weight: 600; margin-top: 2px;"></small>
             </div>
 
-            <!-- Input No HP -->
-            <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13px; font-weight: 600; color: #475569;">No. WhatsApp / HP <span style="color: #ef4444;">*</span></label>
-                <input type="text" id="no_hp" name="no_hp" class="form-control" placeholder="Contoh: 081234567890" style="padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; outline: none;">
-                <small class="error-msg" id="err-hp" style="color: #ef4444; font-size: 12px; margin-top: 2px;"></small>
+            <!-- Input No. WhatsApp / HP -->
+            <div style="display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px;">
+                <label for="no_hp" style="font-size: 11.5px; font-weight: 700; color: #34495e;">
+                    No. WhatsApp / HP <span style="color: #e74c3c;">*</span>
+                </label>
+                <div style="position: relative;">
+                    <i class="fa-solid fa-phone" style="position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: #bdc3c7; font-size: 11px;"></i>
+                    <input type="text" id="no_hp" name="no_hp" placeholder="Contoh: 081234567890" style="width: 100%; padding: 8px 12px 8px 32px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px; outline: none; background: #ffffff; transition: border-color 0.2s;" onfocus="this.style.borderColor='#2980b9'" onblur="this.style.borderColor='#cbd5e1'">
+                </div>
+                <small id="err-hp" style="color: #e74c3c; font-size: 10.5px; display: none; font-weight: 600; margin-top: 2px;"></small>
             </div>
 
             <!-- Input Alamat Singkat -->
-            <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-size: 13px; font-weight: 600; color: #475569;">Alamat Singkat</label>
-                <input type="text" id="alamat" name="alamat" class="form-control" placeholder="Masukkan alamat pelanggan" style="padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; outline: none;">
+            <div style="display: flex; flex-direction: column; gap: 5px; margin-bottom: 18px;">
+                <label for="alamat" style="font-size: 11.5px; font-weight: 700; color: #34495e;">
+                    Alamat Singkat <span style="color: #e74c3c;">*</span>
+                </label>
+                <div style="position: relative;">
+                    <i class="fa-solid fa-location-dot" style="position: absolute; left: 11px; top: 10px; color: #bdc3c7; font-size: 11px;"></i>
+                    <textarea id="alamat" name="alamat" rows="3" placeholder="Masukkan alamat singkat..." style="width: 100%; padding: 8px 12px 8px 32px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px; outline: none; background: #ffffff; resize: vertical; transition: border-color 0.2s;" onfocus="this.style.borderColor='#2980b9'" onblur="this.style.borderColor='#cbd5e1'"></textarea>
+                </div>
+                <small id="err-alamat" style="color: #e74c3c; font-size: 10.5px; display: none; font-weight: 600; margin-top: 2px;"></small>
             </div>
 
+            <!-- Tombol Aksi -->
+            <div style="display: flex; gap: 8px; border-top: 1px solid #f1f5f9; padding-top: 14px;">
+                <button type="submit" id="btn-simpan" class="btn-sm btn-primary" style="padding: 8px 16px; font-size: 11.5px; display: flex; align-items: center; gap: 6px;">
+                    <i class="fa-solid fa-floppy-disk"></i> Simpan Data
+                </button>
+                <button type="reset" id="btn-reset" class="btn-sm" style="background: #ffffff; color: #7f8c8d; border: 1px solid #cbd5e1; padding: 8px 14px; font-size: 11.5px; display: flex; align-items: center; gap: 6px;">
+                    <i class="fa-solid fa-rotate-left"></i> Reset
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- KOLOM KANAN: Tabel Ringkasan Pelanggan -->
+    <div class="section-panel" style="margin-bottom: 0;">
+        <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; margin-bottom: 14px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 32px; height: 32px; background: #e8f8f5; color: #27ae60; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px;">
+                    <i class="fa-solid fa-address-book"></i>
+                </div>
+                <div>
+                    <h4 style="font-size: 13.5px; color: #2c3e50; font-weight: 700;">Pelanggan Terdaftar</h4>
+                    <span style="font-size: 11px; color: #95a5a6;">Data master pelanggan terkini</span>
+                </div>
+            </div>
+            <span style="font-size: 11px; font-weight: 700; background: #f1f5f9; color: #475569; padding: 3px 8px; border-radius: 12px;">Total: 2 Member</span>
         </div>
 
-        <div style="display: flex; gap: 10px; border-top: 1px solid #f1f5f9; padding-top: 16px;">
-            <button type="submit" id="btn-simpan-pelanggan" style="background: #2563eb; color: #ffffff; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; font-size: 13px; cursor: pointer;">
-                Simpan Data
-            </button>
-            <button type="reset" id="btn-reset-form" style="background: #64748b; color: #ffffff; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; font-size: 13px; cursor: pointer;">
-                Reset
-            </button>
+        <div class="table-responsive">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Pelanggan</th>
+                        <th>No. WhatsApp</th>
+                        <th>Alamat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong style="color: #2c3e50;">Budi Santoso</strong><br>
+                            <small class="text-muted">ID: PLG-001</small>
+                        </td>
+                        <td>081234567890</td>
+                        <td>Kedungdoro No. 12, Surabaya</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong style="color: #2c3e50;">Siti Aminah</strong><br>
+                            <small class="text-muted">ID: PLG-002</small>
+                        </td>
+                        <td>089765432109</td>
+                        <td>Ketintang Baru II/5, Surabaya</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </form>
+    </div>
+
 </div>
 
 <script src="js/validasi.js"></script>

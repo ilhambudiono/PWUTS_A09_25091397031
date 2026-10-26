@@ -3,45 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOLA Laundry - Management System</title>
+    <title>HOLA POS - Management System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- Hero Header Banner -->
+    <!-- Header Banner Navigation (Item 2.a) -->
     <header class="hero-header">
         <div class="hero-container">
-            
-            <!-- Top Row: Brand & Profile -->
+            <!-- Top Bar: Profil Toko, Admin & Theme Toggle -->
             <div class="hero-top">
                 <div class="brand">
-                    <div class="brand-icon">
-                        <i class="fa-solid fa-washing-machine"></i>
+                    <div class="brand-box">
+                        <i class="fa-solid fa-soap"></i>
                     </div>
                     <div class="brand-text">
-                        <h1>HOLA LAUNDRY</h1>
-                        <p>Sistem Informasi Manajemen Laundry</p>
+                        <h1 class="brand-title">HOLA LAUNDRY</h1>
+                        <span class="brand-sub">Sistem Informasi Manajemen Operations</span>
                     </div>
                 </div>
 
-                <div class="user-profile">
-                    <div class="user-avatar">IB</div>
-                    <div class="user-details">
-                        <span class="user-name">Ilham Budiono</span>
-                        <span class="user-role">Administrator</span>
+                <div class="user-meta">
+                    <button id="btn-theme" class="btn-theme-toggle" type="button" title="Ubah Mode Tampilan">
+                        <i class="fa-solid fa-moon"></i> <span id="theme-text">Malam</span>
+                    </button>
+
+                    <div class="user-info-group">
+                        <div class="user-avatar-small"><i class="fa-solid fa-user-gear"></i></div>
+                        <div class="user-text">
+                            <span class="user-name">Ilham Budiono</span>
+                            <span class="user-role">Administrator</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Bottom Row: Navigation Tabs -->
+            <!-- Tab Navigation (Hyperlink Ajax Item 2.a) -->
             <nav class="nav-tabs">
                 <a href="#" class="tab-item active nav-ajax" data-page="home">
-                    <i class="fa-solid fa-chart-pie"></i>
+                    <i class="fa-solid fa-house"></i>
                     <span>Dashboard Home</span>
                 </a>
                 <a href="#" class="tab-item nav-ajax" data-page="pages/interaktif.html">
-                    <i class="fa-solid fa-wallet"></i>
+                    <i class="fa-solid fa-chart-line"></i>
                     <span>Laporan Omset</span>
                 </a>
                 <a href="#" class="tab-item nav-ajax" data-page="pages/transaksi.html">
@@ -49,7 +54,6 @@
                     <span>Data Pelanggan</span>
                 </a>
             </nav>
-
         </div>
     </header>
 
@@ -57,68 +61,149 @@
     <main class="main-wrapper">
         <div id="main-content" class="content-container">
             
-            <!-- Default Home Content -->
             <div id="default-dashboard">
                 
-                <!-- Stat Cards Grid -->
-                <div class="metrics-grid">
-                    <div class="metric-card border-blue">
-                        <div class="metric-body">
-                            <span class="metric-title">Total Transaksi</span>
-                            <h2 class="metric-number">128</h2>
-                            <span class="metric-note text-blue"><i class="fa-solid fa-receipt"></i> +12% minggu ini</span>
+                <!-- 1. Status Cards Top Row -->
+                <div class="status-grid">
+                    <div class="status-card card-warning">
+                        <div class="card-top">
+                            <span class="card-label">SEDANG DIPROSES</span>
+                            <span class="badge-detail">Detail &rarr;</span>
                         </div>
+                        <h2 class="card-value">0 <small>Pesanan</small></h2>
                     </div>
 
-                    <div class="metric-card border-green">
-                        <div class="metric-body">
-                            <span class="metric-title">Pelanggan Terdaftar</span>
-                            <h2 class="metric-number">45 Member</h2>
-                            <span class="metric-note text-green"><i class="fa-solid fa-user-check"></i> Terverifikasi</span>
+                    <div class="status-card card-info">
+                        <div class="card-top">
+                            <span class="card-label">SIAP DIAMBIL</span>
+                            <span class="badge-detail">Detail &rarr;</span>
                         </div>
+                        <h2 class="card-value">1 <small>Pesanan</small></h2>
                     </div>
 
-                    <div class="metric-card border-orange">
-                        <div class="metric-body">
-                            <span class="metric-title">Omset Bulan Ini</span>
-                            <h2 class="metric-number">Rp 3.450.000</h2>
-                            <span class="metric-note text-orange"><i class="fa-solid fa-arrow-trend-up"></i> Target 85%</span>
+                    <div class="status-card card-success">
+                        <div class="card-top">
+                            <span class="card-label">SELESAI / DIAMBIL</span>
+                            <span class="badge-detail">Detail &rarr;</span>
+                        </div>
+                        <h2 class="card-value">6 <small>Pesanan</small></h2>
+                    </div>
+                </div>
+
+                <!-- 2. Omset Banner Panel -->
+                <div class="omset-banner">
+                    <div class="omset-info">
+                        <span class="badge-sub"><i class="fa-solid fa-chart-pie"></i> Ringkasan Keuangan</span>
+                        <h3>Total Omset Toko (Lunas)</h3>
+                        <p>Akumulasi pendapatan bersih dari seluruh transaksi laundry yang telah lunas.</p>
+                    </div>
+                    <div class="omset-amount">
+                        <span>Rp 2.903.600</span>
+                    </div>
+                </div>
+
+                <!-- 3. Pilih Layanan Kasir Section -->
+                <div class="section-panel">
+                    <div class="section-title">
+                        <h3>Pilih Layanan Kasir</h3>
+                        <p>Klik salah satu kartu layanan untuk membuat pesanan baru.</p>
+                    </div>
+
+                    <div class="service-grid">
+                        <div class="service-card">
+                            <div class="service-icon-wrap"><i class="fa-solid fa-droplet"></i></div>
+                            <h4>Cuci Basah</h4>
+                            <span class="service-price">Rp 4.000 / kg</span>
+                            <span class="service-time">Estimasi 1 hari</span>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon-wrap"><i class="fa-solid fa-wind"></i></div>
+                            <h4>Cuci Kering</h4>
+                            <span class="service-price">Rp 7.000 / kg</span>
+                            <span class="service-time">Estimasi 2 hari</span>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon-wrap"><i class="fa-solid fa-shirt"></i></div>
+                            <h4>Cuci Setrika</h4>
+                            <span class="service-price">Rp 10.000 / kg</span>
+                            <span class="service-time">Estimasi 2 hari</span>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon-wrap"><i class="fa-solid fa-bolt"></i></div>
+                            <h4>Cuci Ekspress</h4>
+                            <span class="service-price">Rp 15.000 / kg</span>
+                            <span class="service-time">Estimasi 8 jam</span>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon-wrap"><i class="fa-solid fa-rug"></i></div>
+                            <h4>Selimut</h4>
+                            <span class="service-price">Rp 20.000 / pcs</span>
+                            <span class="service-time">Estimasi 3 hari</span>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon-wrap"><i class="fa-solid fa-bed"></i></div>
+                            <h4>Bed Cover</h4>
+                            <span class="service-price">Rp 30.000 / pcs</span>
+                            <span class="service-time">Estimasi 3 hari</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Data Table Section -->
-                <div class="card-panel">
-                    <div class="panel-header">
-                        <h3><i class="fa-solid fa-clock-rotate-left"></i> Transaksi Terakhir</h3>
-                        <a href="#" class="btn-link nav-ajax" data-page="pages/interaktif.html">Lihat Semua</a>
+                <!-- 4. Antrean Laundry Aktif Table -->
+                <div class="section-panel">
+                    <div class="table-header-bar">
+                        <div class="section-title margin-0">
+                            <h3>Antrean Laundry Aktif</h3>
+                            <p>Daftar pesanan cucian yang sedang berjalan dalam sistem.</p>
+                        </div>
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="Cari nama / resi / hp...">
+                        </div>
                     </div>
-                    
+
                     <div class="table-responsive">
                         <table class="custom-table">
                             <thead>
                                 <tr>
-                                    <th>No. Resi</th>
-                                    <th>Pelanggan</th>
-                                    <th>Jenis Layanan</th>
-                                    <th>Status Pembayaran</th>
-                                    <th>Status Pengerjaan</th>
+                                    <th>NO. RESI & WAKTU</th>
+                                    <th>PELANGGAN</th>
+                                    <th>LAYANAN & CATATAN</th>
+                                    <th>TOTAL</th>
+                                    <th>STATUS</th>
+                                    <th>UBAH STATUS</th>
+                                    <th>AKSI</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><strong>RES-1001</strong></td>
-                                    <td>Budi Santoso</td>
-                                    <td>Cuci Komplit (3.5 kg)</td>
-                                    <td><span class="badge badge-paid">Lunas</span></td>
-                                    <td><span class="badge badge-process">Sedang Diproses</span></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>RES-1002</strong></td>
-                                    <td>Siti Aminah</td>
-                                    <td>Cuci Kering (2.0 kg)</td>
-                                    <td><span class="badge badge-unpaid">Belum Lunas</span></td>
-                                    <td><span class="badge badge-process">Sedang Diproses</span></td>
+                                    <td>
+                                        <strong class="resi-link">HLA-20261008-3090</strong><br>
+                                        <small class="text-muted">08/10/2026 03:13 WIB</small>
+                                    </td>
+                                    <td>
+                                        <strong>Pak Prabowo</strong><br>
+                                        <small class="text-muted">0897654334</small>
+                                    </td>
+                                    <td>Bed Cover (56.00 kg)</td>
+                                    <td><strong>Rp 1.680.000</strong></td>
+                                    <td><span class="status-tag status-blue">● Siap Diambil</span></td>
+                                    <td>
+                                        <div class="status-actions">
+                                            <select class="form-select-sm">
+                                                <option selected>Siap Diambil</option>
+                                                <option>Sedang Diproses</option>
+                                                <option>Selesai</option>
+                                            </select>
+                                            <select class="form-select-sm">
+                                                <option selected>Lunas</option>
+                                                <option>Belum Lunas</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button class="btn-action-sm"><i class="fa-solid fa-print"></i> Cetak</button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
